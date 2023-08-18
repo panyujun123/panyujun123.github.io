@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="01. 摄像机几何核心问题：告诉我们三维世界怎么通过摄像机映射到二维的，需要一个摄像机的数学模型。也就是摄像机建模的问题。
+针孔摄像机：理解像平面，针孔&amp;#x3D;光圈&amp;#x3D;摄像机中心，焦距，虚拟像平面(为什么研究它不研究像平面？)的概念。
+数学化描述针孔摄像机：
+
+成像过程就是由摄像机坐标系"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Shixuan Wu"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CS231A"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="01. 摄像机几何核心问题：告诉我们三维世界怎么通过摄像机映射到二维的，需要一个摄像机的数学模型。也就是摄像机建模的问题。
+针孔摄像机：理解像平面，针孔&amp;#x3D;光圈&amp;#x3D;摄像机中心，焦距，虚拟像平面(为什么研究它不研究像平面？)的概念。
+数学化描述针孔摄像机：
+
+成像过程就是由摄像机坐标系"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="metikos"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>CS231A - metikos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Shixuanwu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/panyujun123">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-my.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>CS231A</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-08-18
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="01-摄像机几何"><a href="#01-摄像机几何" class="headerlink" title="01. 摄像机几何"></a>01. 摄像机几何</h1><p><strong>核心问题</strong>：告诉我们三维世界怎么通过摄像机映射到二维的，需要一个摄像机的数学模型。也就是摄像机建模的问题。</p>
+<p>针孔摄像机：理解像平面，针孔&#x3D;光圈&#x3D;摄像机中心，焦距，虚拟像平面(为什么研究它不研究像平面？)的概念。</p>
+<p>数学化描述针孔摄像机：</p>
+<p><img src="D:\ketizu\image-20230817230350116.png"></p>
+<p>成像过程就是由摄像机坐标系下的P点映射到像平面坐标系下的P’点。（使用俩次相似三角形法则）</p>
+<p>接下来再来思考：光圈的尺寸重要吗？，所以真实的相机为了既增加亮度又增加清晰度，通常使用透镜。透镜通过将多条光线聚焦到胶片上，增加了相机的亮度。</p>
+<p>透镜问题：失焦</p>
+<p>物体聚焦有特定距离，景深</p>
+<p>透镜问题：径向畸变</p>
+<p><img src="D:\ketizu\image-20230817232150812.png"></p>
+<p><strong>一个好的相机模型应当考虑到上面这些情况。</strong></p>
+<p>摄像机几何</p>
+<p>与针孔摄像机的区别不过是真实世界得到的是像素(图像)平面，需将连续的像平面（以米为单位，是中间状态）转换到像素平面（以像素为单位）。</p>
+<p>1.偏置  2.单位变换（单位：k，l :pixel&#x2F;m,f:m）</p>
+<p>思考：点P到点P‘的变换是线性的吗？</p>
+<p><img src="D:\ketizu\image-20230818150258259.png"></p>
+<p>如何变成线性关系，这里我们就要引入齐次坐标。</p>
+<p><img src="D:\ketizu\image-20230818150404421.png"></p>
+<p>摄像机坐标系下的摄像机模型：</p>
+<p><img src="D:\ketizu\image-20230818151048520.png"></p>
+<p>接下来介绍一种特殊的摄像机：规范化摄像机，它不是一种真实存在的摄像机，只是一种中间状态，将来要用来推导一些性质。</p>
+<p><img src="D:\ketizu\image-20230818151430758.png"></p>
+<p>有什么用？它的世界坐标系下的点的三维坐标就是图像点的齐次坐标，反过来如果知道了规范化摄像机的二维点的齐次坐标就知道了三维点的坐标。（后面的极几何会用到这个性质） </p>
+<p>​                                                                                  <strong>世界坐标系</strong></p>
+<p><img src="D:\ketizu\image-20230818151941918.png"></p>
+<p><img src="D:\ketizu\image-20230818152142091.png"></p>
+<p>R,T旋转和平移矩阵，与摄像机摆放位置有关，物理意义是有世界坐标系得到摄像机坐标系。坐标系与坐标系之间转换可以用旋转和平移来转换。</p>
+<p><img src="D:\ketizu\image-20230818152612600.png"></p>
+<p>要理解上图各个符号的物理意义及其维度是什么？投影矩阵M有多少个自由度？P’转换成欧式坐标怎么写？</p>
+<p><img src="D:\ketizu\image-20230818152956517.png"></p>
+<p>投影变换的一些性质：</p>
+<p>点投影为点，线投影为线，近大远小，角度不再保持，平行线相交。</p>
+<p><strong>其他摄像机模型：</strong></p>
+<p><img src="D:\ketizu\image-20230818153705324.png"></p>
+<p><img src="D:\ketizu\image-20230818153808692.png"></p>
+<p><img src="D:\ketizu\image-20230818154050597.png"></p>
+<p><img src="D:\ketizu\image-20230818154225644.png"></p>
+<p><img src="D:\ketizu\image-20230818154207148.png"></p>
+<p>回顾：</p>
+<p>针孔模型 &amp; 透镜，摄像机几何，其他摄像机模型。能够区分三个坐标系，摄像机坐标系，世界坐标系，像素坐标系，像平面坐标系（之后不在出现。）</p>
+<p><img src="D:\ketizu\image-20230818154524091.png"></p>
+<h1 id="02-摄像机标注"><a href="#02-摄像机标注" class="headerlink" title="02. 摄像机标注"></a>02. 摄像机标注</h1><h1 id="03-单视图重建"><a href="#03-单视图重建" class="headerlink" title="03. 单视图重建"></a>03. 单视图重建</h1><h1 id="04-三维重建基础与极几何"><a href="#04-三维重建基础与极几何" class="headerlink" title="04. 三维重建基础与极几何"></a>04. 三维重建基础与极几何</h1><h2 id="4-1-三维重建基础"><a href="#4-1-三维重建基础" class="headerlink" title="4.1.三维重建基础"></a>4.1.三维重建基础</h2><p>为什么需要三维重建，从单幅视图恢复结构有什么弊端？</p>
+<p>仅从一张图像中恢复3D世界的整 个结构是不可能的。这是由于3D到2D映射的内在模糊性:一些信息简单地丢失了。  一般来说，单张视图2D到3D的映射具有多义性。比如下图，我们可以看到此人与斜塔是处于很接近的高度，但显然人不可能有斜塔那么高。原因就在于我们并不知道人距离相机的远近，因为单张视图是不知道远近的，会认为人和斜塔是在同一深度上，从而他们的高度可以相互衬托。<strong>这就是单视图的问题：没有办法确定深度。</strong></p>
+<p><img src="D:\ketizu\image-20230807184523527.png"></p>
+<p>要解决这个问题，通常要引入第二个视图，以便于感受深度。（可以理解为人类，机器人的双眼。）接下来再来思考为什么双眼可以解决这个问题？显然，一条射线不能确定点的位置，但有俩个摄像机之后，它们的射线会交于一交点。如何求这一交点下并不难求出：***P &#x3D;l x l’***（前面已经给出证明，不再赘述。）</p>
+<p><img src="D:\ketizu\image-20230807185645529.png"></p>
+<p><strong>但要注意的是</strong>，l与l’是不同坐标系下的俩条直线，它们直接叉乘没有意义，要把l’经过旋转，平移(R,T)之后变到O1系统的坐标系下叉乘才有意义,这个过程叫做三角化。通过俩个视点以及对应点和R,T就能得到P点坐标。</p>
+<p><strong>但是，在真实情况下，由于噪声的存在，空间中的俩个点通常不会相交。</strong>叉乘求解也就不再适用。</p>
+<p>问题：已知p和p’,K和K‘，R,T，求解P点的三维坐标？</p>
+<p>线性解法</p>
+<p>非线性解法</p>
+<p>但在实际问题中，经常面临以下几种问题：（为什么三维重建问题难？）</p>
+<p>已知p和p’,相机内参数K和K‘，求解：相机的R,T以及P点的三维坐标？</p>
+<p>已知p和p’,求解：相机内参数K和K‘，相机的R,T以及P点的三维坐标？</p>
+<p>从而引出多视图重建的几个关键点：</p>
+<ul>
+<li><em><strong>摄像机几何</strong></em>：从一张或者多张图像中求解摄像机的内外参数</li>
+<li><em><strong>场景几何</strong></em>：通过二至多幅图寻找3D场景坐标</li>
+<li><em><strong>对应关系</strong></em>：已知一个图像中的p点，如何在另一个图像中找到p’点</li>
+</ul>
+<h2 id="4-2-极几何与基础矩阵"><a href="#4-2-极几何与基础矩阵" class="headerlink" title="4.2 极几何与基础矩阵"></a>4.2 极几何与基础矩阵</h2><p>​                                    <strong>极几何：描述了同一场景或者物体的俩个视点图像间的几何关系</strong></p>
+<p>​									          <strong>作用：将搜索范围缩小到对应的极线上。</strong></p>
+<p><img src="D:\ketizu\image-20230809151041900.png"></p>
+<p>给定了一个点P，虽然不知道对应点p’在图像的那个位置，但是知道它一定在l’这条直线上，这就叫做极几何。不用发在全图去找，只在一条直线上去找。从而把一个全图搜索的问题，利用一些先验知识知道它只在一条线上，不会再更多的地方。</p>
+<p>极几何特例：平行视图</p>
+<p>极几何特例2：前向平移（无旋转）</p>
+<p>什么是本质矩阵(The Essential Matrix)?</p>
+<p>本质矩阵对规范化摄像机拍摄的两个视点图像间的极几何关系进行代数描述； </p>
+<h1 id="05-双面立体视觉重建"><a href="#05-双面立体视觉重建" class="headerlink" title="05. 双面立体视觉重建"></a>05. 双面立体视觉重建</h1><h1 id="06-多视图重建"><a href="#06-多视图重建" class="headerlink" title="06. 多视图重建"></a>06. 多视图重建</h1><h1 id="07-运动恢复结构（SFM）系统设计"><a href="#07-运动恢复结构（SFM）系统设计" class="headerlink" title="07. 运动恢复结构（SFM）系统设计"></a>07. 运动恢复结构（SFM）系统设计</h1><p>定义：通过三维场景的多张图片，恢复出该场景的<strong>三维结构信息</strong>以及每张图片对应的<strong>摄像机参数</strong>。</p>
+<p>三种典型的运动恢复结构任务：</p>
+<p>​	欧式结构恢复 摄像机内参数已知，外参数未知</p>
+<p>​	仿射结构恢复 摄像机为仿射相机，内外参数均未知</p>
+<p>​	透视结构恢复 摄像机为透视相机，内外参数均未知</p>
+<h1 id="08-同时定位与建图（SLAM）系统设计"><a href="#08-同时定位与建图（SLAM）系统设计" class="headerlink" title="08. 同时定位与建图（SLAM）系统设计"></a>08. 同时定位与建图（SLAM）系统设计</h1>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/panyujun123" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2023 Shixuan Wu<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
