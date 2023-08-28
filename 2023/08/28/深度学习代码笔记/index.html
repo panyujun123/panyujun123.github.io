@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+这是PyTorch中的一个图像预处理步骤，它用于对图像数据进行归一化。transforms.Normalize(mean, std)函数会对图像的每个通道执行以下操作：channel &amp;#x"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Shixuan Wu"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="深度学习代码笔记"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+这是PyTorch中的一个图像预处理步骤，它用于对图像数据进行归一化。transforms.Normalize(mean, std)函数会对图像的每个通道执行以下操作：channel &amp;#x"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="metikos"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>深度学习代码笔记 - metikos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Shixuanwu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/panyujun123">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-my.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>深度学习代码笔记</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-08-28
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h6 id="transforms-Normalize-0-5-0-5-0-5-0-5-0-5-0-5"><a href="#transforms-Normalize-0-5-0-5-0-5-0-5-0-5-0-5" class="headerlink" title="transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])"></a>transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])</h6><hr>
+<p>这是PyTorch中的一个图像预处理步骤，它用于对图像数据进行归一化。transforms.Normalize(mean, std)函数会对图像的每个通道执行以下操作：channel &#x3D; (channel - mean) &#x2F; std。其中，mean和std分别是每个通道的均值和标准差。</p>
+<p>在这个例子中，mean和std都是[0.5, 0.5, 0.5]，这意味着我们将图像的每个通道的像素值从[0, 1]范围转换到[-1, 1]范围。这样做的目的是将输入值的范围中心化到0，使得模型的训练更加稳定。</p>
+<p>需要注意的是，这里的mean和std的值并不是随意选择的，而是应该根据具体的数据集来确定。在这个例子中，假设图像的原始像素值已经被归一化到[0, 1]范围，然后我们选择0.5作为均值和标准差，以将像素值进一步归一化到[-1, 1]范围。</p>
+<p>对图像数据进行归一化有几个主要的原因：</p>
+<p><strong>提高模型训练的稳定性</strong>：归一化可以使得不同的特征具有相似的数据分布，这有助于模型的收敛和提高训练的稳定性。</p>
+<p><strong>加快模型训练速度</strong>：当输入数据的数值范围相差较大时，模型需要花费更多的时间来学习这些特征的适当权重。通过归一化，我们可以将所有特征的数值范围控制在一个相似的范围内，从而加快模型的训练速度。</p>
+<p><strong>提高模型性能</strong>：归一化可以使得模型更容易找到一个更好的解，从而提高模型的性能。</p>
+<p>在图像处理中，我们通常将像素值从[0, 255]的整数范围归一化到[0, 1]或[-1, 1]的浮点数范围。这样做可以使得模型处理的数值范围更小，更容易训练。</p>
+<h6 id="训练和测试数据预处理流程不同："><a href="#训练和测试数据预处理流程不同：" class="headerlink" title="训练和测试数据预处理流程不同："></a>训练和测试数据预处理流程不同：</h6><hr>
+<p>这两种预处理流程的主要区别在于，训练流程包含了随机的数据增强操作，而验证流程则没有。</p>
+<p>这是因为，在训练阶段，我们希望通过数据增强来增加模型的泛化能力；而在验证阶段，我们希望评估模型在固定数据上的性能，因此不使用数据增强。</p>
+<p>- transforms.Resize(256)：这个操作会将图像的<strong>短边</strong>缩放到256像素，<strong>长边</strong>按比例缩放。</p>
+<p>- transforms.CenterCrop(224)：这个操作会从图像的中心裁剪出224x224的区域。因为在验证阶段，我们通常不使用数据增强技术，而是使用确定性的预处理方法。</p>
+<h6 id="训练代码中为什么要冻结模型的部分层？"><a href="#训练代码中为什么要冻结模型的部分层？" class="headerlink" title="训练代码中为什么要冻结模型的部分层？"></a>训练代码中为什么要冻结模型的部分层？</h6><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">if args.weights != &quot;&quot;:</span><br><span class="line">        assert os.path.exists(args.weights), &quot;weights file: &#x27;&#123;&#125;&#x27; not exist.&quot;.format(args.weights)</span><br><span class="line">        weights_dict = torch.load(args.weights, map_location=device)</span><br><span class="line">        # 删除不需要的权重</span><br><span class="line">        del_keys = [&#x27;head.weight&#x27;, &#x27;head.bias&#x27;] if model.has_logits \</span><br><span class="line">            else [&#x27;pre_logits.fc.weight&#x27;, &#x27;pre_logits.fc.bias&#x27;, &#x27;head.weight&#x27;, &#x27;head.bias&#x27;]</span><br><span class="line">        for k in del_keys:</span><br><span class="line">            del weights_dict[k]</span><br><span class="line">        print(model.load_state_dict(weights_dict, strict=False))</span><br><span class="line"></span><br><span class="line">    if args.freeze_layers:</span><br><span class="line">        for name, para in model.named_parameters():</span><br><span class="line">            # 除head, pre_logits外，其他权重全部冻结</span><br><span class="line">            if &quot;head&quot; not in name and &quot;pre_logits&quot; not in name:</span><br><span class="line">                para.requires_grad_(False)</span><br><span class="line">            else:</span><br><span class="line">                print(&quot;training &#123;&#125;&quot;.format(name))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>冻结模型的部分层，通常是在进行迁移学习时使用的策略。</p>
+<p>迁移学习是一种利用预训练模型（通常是在大规模数据集上训练得到的）来解决新任务的方法。预训练模型的前几层通常可以捕获到一些通用的特征（如边缘、纹理等），而后几层则更专注于原始任务的特定特征。因此，当我们用预训练模型来解决新任务时，通常会保留前几层的权重不变，只训练后几层的权重。这就是所谓的“冻结模型的部分层”。</p>
+<p>冻结模型的部分层有以下几个好处：</p>
+<p><strong>减少过拟合</strong>：如果新任务的数据集较小，直接训练整个模型可能会导致过拟合。通过冻结部分层，我们可以减少模型的复杂度，从而降低过拟合的风险。</p>
+<p><strong>加速训练</strong>：冻结部分层后，需要更新的参数数量会减少，这可以大大加速训练过程。</p>
+<p><strong>利用预训练模型的通用特征</strong>：预训练模型的前几层通常可以捕获到一些通用的特征，这些特征对新任务也可能是有用的。通过冻结这些层，我们可以直接利用这些通用特征，而无需从头开始训练。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weights_dict = torch.load(args.weights, map_location=device)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码的作用是加载预训练的模型权重。torch.load(args.weights, map_location&#x3D;device)这个函数调用会从args.weights指定的文件中加载模型权重。这个文件通常是一个.pth文件，它包含了模型的所有权重。map_location&#x3D;device参数的作用是指定权重张量（Tensor）的存储位置。如果device是一个CUDA设备，那么权重张量将被存储在这个CUDA设备上。如果device是CPU，那么权重张量将被存储在CPU上。加载完权重后，这些权重被存储在weights_dict这个字典中。字典的键是权重的名称，值是对应的权重张量。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/panyujun123" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2023 Shixuan Wu<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
