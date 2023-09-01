@@ -215,6 +215,37 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weights_dict = torch.load(args.weights, map_location=device)</span><br></pre></td></tr></table></figure>
 
 <p>这段代码的作用是加载预训练的模型权重。torch.load(args.weights, map_location&#x3D;device)这个函数调用会从args.weights指定的文件中加载模型权重。这个文件通常是一个.pth文件，它包含了模型的所有权重。map_location&#x3D;device参数的作用是指定权重张量（Tensor）的存储位置。如果device是一个CUDA设备，那么权重张量将被存储在这个CUDA设备上。如果device是CPU，那么权重张量将被存储在CPU上。加载完权重后，这些权重被存储在weights_dict这个字典中。字典的键是权重的名称，值是对应的权重张量。</p>
+<h6 id="requires-grad-和requires-grad有什么区别"><a href="#requires-grad-和requires-grad有什么区别" class="headerlink" title="requires_grad_和requires_grad有什么区别"></a>requires_grad_和requires_grad有什么区别</h6><hr>
+<p>- requires_grad是一个可读可写的属性。你可以使用tensor.requires_grad来查看一个张量是否需要计算梯度，也可以使用tensor.requires_grad &#x3D; True或tensor.requires_grad &#x3D; False来设置一个张量是否需要计算梯度。</p>
+<p>- requires_grad_是一个原地操作（in-place operation），它会改变调用它的张量的requires_grad属性。例如，tensor.requires_grad_(True)会将tensor的requires_grad属性设置为True。</p>
+<p>总的来说，requires_grad和requires_grad_的功能是相同的，但requires_grad_是一个原地操作，它会直接修改调用它的张量，而不会创建新的张量。</p>
+<h6 id="optimizer-optim-SGD-pg-lr-args-lr-momentum-0-9-weight-decay-5E-5-这里的后俩个参数是什么意思？"><a href="#optimizer-optim-SGD-pg-lr-args-lr-momentum-0-9-weight-decay-5E-5-这里的后俩个参数是什么意思？" class="headerlink" title="optimizer &#x3D; optim.SGD(pg, lr&#x3D;args.lr, momentum&#x3D;0.9, weight_decay&#x3D;5E-5)这里的后俩个参数是什么意思？"></a>optimizer &#x3D; optim.SGD(pg, lr&#x3D;args.lr, momentum&#x3D;0.9, weight_decay&#x3D;5E-5)这里的后俩个参数是什么意思？</h6><hr>
+<p>这里的momentum和weight_decay都是优化器SGD（随机梯度下降）的参数。</p>
+<p>- momentum：动量，是SGD的一个变种，它在更新参数时会考虑前一步的更新方向，可以加快收敛速度并有助于跳出局部最优。momentum&#x3D;0.9表示动量的值为0.9。</p>
+<p>- weight_decay：权重衰减，也叫L2正则化，是防止过拟合的一种手段。它的工作原理是在损失函数中添加一个正则项，这个正则项是模型所有参数的平方和的一部分。weight_decay&#x3D;5E-5表示权重衰减的系数为0.00005。</p>
+<h6 id="args参数的主要步骤"><a href="#args参数的主要步骤" class="headerlink" title="args参数的主要步骤"></a>args参数的主要步骤</h6><hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(&#x27;--num_classes&#x27;, type=int, default=5)</span><br><span class="line">    parser.add_argument(&#x27;--epochs&#x27;, type=int, default=10)</span><br><span class="line">    parser.add_argument(&#x27;--batch-size&#x27;, type=int, default=8)</span><br><span class="line">    parser.add_argument(&#x27;--lr&#x27;, type=float, default=0.001)</span><br><span class="line">    parser.add_argument(&#x27;--lrf&#x27;, type=float, default=0.01)</span><br><span class="line"></span><br><span class="line">    # 数据集所在根目录</span><br><span class="line">    # https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz</span><br><span class="line">    parser.add_argument(&#x27;--data-path&#x27;, type=str,</span><br><span class="line">                        default=&quot;/data/flower_photos&quot;)</span><br><span class="line">    parser.add_argument(&#x27;--model-name&#x27;, default=&#x27;&#x27;, help=&#x27;create model name&#x27;)</span><br><span class="line"></span><br><span class="line">    # 预训练权重路径，如果不想载入就设置为空字符</span><br><span class="line">    parser.add_argument(&#x27;--weights&#x27;, type=str, default=&#x27;./vit_base_patch16_224_in21k.pth&#x27;,</span><br><span class="line">                        help=&#x27;initial weights path&#x27;)</span><br><span class="line">    # 是否冻结权重</span><br><span class="line">    parser.add_argument(&#x27;--freeze-layers&#x27;, type=bool, default=True)</span><br><span class="line">    parser.add_argument(&#x27;--device&#x27;, default=&#x27;cuda:0&#x27;, help=&#x27;device id (i.e. 0 or 0,1 or cpu)&#x27;)</span><br><span class="line"></span><br><span class="line">    opt = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    main(opt)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><strong>创建参数解析器</strong>：使用argparse.ArgumentParser()创建一个参数解析器。</p>
+</li>
+<li><p><strong>添加参数</strong>：使用parser.add_argument()方法添加各种参数。每个参数都有一个名称（例如–num_classes），一个类型（例如int），一个默认值（例如5），以及一个帮助信息（例如’create model name’）。</p>
+</li>
+<li><p><strong>解析参数</strong>：使用parser.parse_args()方法解析命令行参数，并将结果存储在opt对象中。</p>
+</li>
+<li><p><strong>调用主函数</strong>：使用解析得到的参数opt作为参数，调用main函数。这样做的好处是，可以在命令行中方便地指定各种参数，而无需修改代码。例如，你可以这样运行脚本：python test.py –num_classes 10 –epochs 20，这样就指定了类别数为10，训练轮数为20。在main函数中，你可以通过args.num_classes和args.epochs来获取这些参数的值。</p>
+</li>
+</ol>
+<h6 id="CNN为什么可以有效地处理空间信息？"><a href="#CNN为什么可以有效地处理空间信息？" class="headerlink" title="CNN为什么可以有效地处理空间信息？"></a>CNN为什么可以有效地处理空间信息？</h6><hr>
+<p>卷积神经网络（CNN）之所以能够有效地处理空间信息，主要有以下几个关键原因：</p>
+<ol>
+<li>卷积操作：CNN中的卷积层采用卷积操作来处理图像数据。卷积操作充分利用了图像的局部关系，通过滑动卷积核（一种小的窗口）来提取局部特征。这意味着CNN可以捕获到不同位置之间的空间关系，而不仅仅是全局信息。</li>
+<li>参数共享：CNN中的卷积核是共享参数的，这意味着它们在整个图像上都使用相同的权重。这样的设计可以有效地减少模型的参数数量，同时也有助于提取出空间上具有翻译不变性的特征。这使得CNN更适合处理物体在图像中的不同位置出现的情况。</li>
+<li>池化层：CNN通常在卷积层之后添加池化层（如最大池化或平均池化）。池化操作可以减少特征图的尺寸，同时保留主要信息。这有助于降低模型的计算复杂度，提高对空间信息的稳定性。</li>
+<li>层级结构：CNN通常包含多个卷积层和池化层，这构成了一个层级结构。底层的卷积层可以检测边缘和纹理等低级特征，而随着层级的上升，特征变得更加抽象和高级。这种层级结构有助于模型逐渐构建出对图像不同层次的空间信息的理解。</li>
+<li>数据增强：CNN在训练时通常使用数据增强技术，通过对训练图像进行平移、旋转、翻转等操作来引入更多的空间变化，帮助模型学习更多不同视角下的空间信息。</li>
+</ol>
+<p>总的来说，CNN通过卷积操作、参数共享、池化层、层级结构和数据增强等技术，有效地捕捉和利用了图像中的空间信息，使其成为处理计算机视觉任务的强大工具，如图像分类、目标检测和语义分割等。这些特性使CNN在处理视觉数据时表现出色。</p>
 
 
                 
