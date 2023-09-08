@@ -13,6 +13,14 @@
     
 
     
+        <meta name="description" content="轻量化神经网络本专题主要有四个主要的技术路线：
+
+压缩已经训练好的模型
+知识蒸馏  权值量化  剪枝（pruning，又分为权重剪枝和通道剪枝）  注意力迁移
+
+直接训练轻量化网络
+如SqueezeNet,MobileNet, MnasNet,ShuffleNet, EfficientNet,Eff"/>
+    
 
     <!--Author-->
     
@@ -21,10 +29,18 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="metikos"/>
+        <meta property="og:title" content="Knowledge Distillation"/>
     
 
     <!--Open Graph Description-->
+    
+        <meta property="og:description" content="轻量化神经网络本专题主要有四个主要的技术路线：
+
+压缩已经训练好的模型
+知识蒸馏  权值量化  剪枝（pruning，又分为权重剪枝和通道剪枝）  注意力迁移
+
+直接训练轻量化网络
+如SqueezeNet,MobileNet, MnasNet,ShuffleNet, EfficientNet,Eff"/>
     
 
     <!--Open Graph Site Name-->
@@ -32,7 +48,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website"/>
+        <meta property="og:type" content="article"/>
     
 
     <!--Page Cover-->
@@ -51,7 +67,7 @@
 
     <!-- Title -->
     
-    <title>metikos</title>
+    <title>Knowledge Distillation - metikos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -148,96 +164,93 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
 <header class="intro-header" style="background-image: url('/img/home-my.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>metikos</h1>
-                    <hr class="small">
-                    <span class="subheading"></span>
+                <div class="post-heading">
+                    <h1>Knowledge Distillation</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-09-08
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-                <div class="post-preview">
-    <a href="/2023/09/08/Knowledge-Distillation/">
-        <h2 class="post-title">
-            Knowledge Distillation
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2023-09-08
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2023/08/28/深度学习代码笔记/">
-        <h2 class="post-title">
-            深度学习代码笔记
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2023-08-28
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2023/08/25/Little-Scripts/">
-        <h2 class="post-title">
-            Untitled
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2023-08-25
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2023/08/18/CS231A/">
-        <h2 class="post-title">
-            CS231A
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2023-08-18
-    </p>
-</div>
-<hr>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
 
-            <ul class="pager">
-    
-    
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="轻量化神经网络"><a href="#轻量化神经网络" class="headerlink" title="轻量化神经网络"></a>轻量化神经网络</h1><p>本专题主要有四个主要的技术路线：</p>
+<ul>
+<li><p><strong>压缩已经训练好的模型</strong></p>
+<p>知识蒸馏  权值量化  剪枝（pruning，又分为权重剪枝和通道剪枝）  注意力迁移</p>
+</li>
+<li><p><strong>直接训练轻量化网络</strong></p>
+<p>如SqueezeNet,MobileNet, MnasNet,ShuffleNet, EfficientNet,EfficientDet,Xception</p>
+</li>
+<li><p><strong>加速卷积运算</strong></p>
+<p>从数值运算角度来加速算子的运算，如im2col + GEMM,低秩分解</p>
+</li>
+<li><p><strong>硬件部署</strong></p>
+<p>TensorRT,Jetson</p>
+</li>
 </ul>
+<p>轻量化网络要考虑的内容都有哪些？</p>
+<p>参数量   计算量    内存访问量    耗时   能耗  碳排放    CUDA加速……..</p>
+<h2 id="知识蒸馏"><a href="#知识蒸馏" class="headerlink" title="知识蒸馏"></a>知识蒸馏</h2><h3 id="核心IDEA：如何让Teacher网络把知识交给Student网络，也就是知识的表示与迁移。"><a href="#核心IDEA：如何让Teacher网络把知识交给Student网络，也就是知识的表示与迁移。" class="headerlink" title="核心IDEA：如何让Teacher网络把知识交给Student网络，也就是知识的表示与迁移。"></a>核心IDEA：如何让Teacher网络把知识交给Student网络，也就是知识的表示与迁移。</h3><p>首先要能够区分<strong>hard targets</strong>与<strong>soft targets</strong>,其中soft targets包含了更多的信息，相比之下hard target不是很科学。</p>
+<p><img src="/./Knowledge-Distillation/image-20230908201216568.png" alt="image-20230908201216568"></p>
+<p>思考：如果想要把其他类别的概率也变大，把其中的相对大小充分暴露，放大出来，该怎么办？</p>
+<h3 id="蒸馏温度T"><a href="#蒸馏温度T" class="headerlink" title="蒸馏温度T"></a>蒸馏温度T</h3><hr>
+<p>温度T越高，soft label 就会变得越soft。</p>
+<p><img src="/./Knowledge-Distillation/image-20230908201642331.png" alt="image-20230908201642331"></p>
+<h3 id="知识蒸馏的过程"><a href="#知识蒸馏的过程" class="headerlink" title="知识蒸馏的过程"></a>知识蒸馏的过程</h3><hr>
+<p><img src="/./Knowledge-Distillation/image-20230908202419293.png" alt="image-20230908202419293"></p>
+<p>俩个损失函数可以理解为学生学到的内容和老师教授的内容的差距，以及和课本内容的差距。</p>
+<p>接下来给出训练模型和部署模型：</p>
+<p><img src="/./Knowledge-Distillation/image-20230908202831241.png" alt="image-20230908202831241"></p>
+<h3 id="知识蒸馏背后的机理"><a href="#知识蒸馏背后的机理" class="headerlink" title="知识蒸馏背后的机理"></a>知识蒸馏背后的机理</h3><hr>
+<p><img src="/./Knowledge-Distillation/image-20230908203439172.png" alt="image-20230908203439172"></p>
+<h3 id="知识蒸馏研究方向"><a href="#知识蒸馏研究方向" class="headerlink" title="知识蒸馏研究方向"></a>知识蒸馏研究方向</h3><hr>
+<p>教学相长（学生能否帮助老师进一步成长？）</p>
+<p>是否可以引入多个助教，老师，同学？</p>
+<p>多模态，知识图谱的知识蒸馏。</p>
+<p>知识的表示（中间层），数据集蒸馏，对比学习。</p>
+<p><img src="/./Knowledge-Distillation/image-20230908204551762.png" alt="image-20230908204551762"></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
