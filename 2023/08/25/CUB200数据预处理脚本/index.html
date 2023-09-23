@@ -13,8 +13,11 @@
     
 
     
-        <meta name="description" content="CUB200数据预处理脚本​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）
-12345678910111213141516171819202122232425262728import osdef"/>
+        <meta name="description" content="123title: **CUB200数据预处理脚本**date: 2023-08-18 18:52:17tags:
+
+
+
+CUB200数据预处理脚本​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏"/>
     
 
     <!--Author-->
@@ -29,8 +32,11 @@
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="CUB200数据预处理脚本​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）
-12345678910111213141516171819202122232425262728import osdef"/>
+        <meta property="og:description" content="123title: **CUB200数据预处理脚本**date: 2023-08-18 18:52:17tags:
+
+
+
+CUB200数据预处理脚本​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏"/>
     
 
     <!--Open Graph Site Name-->
@@ -189,7 +195,11 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h1 id="CUB200数据预处理脚本"><a href="#CUB200数据预处理脚本" class="headerlink" title="CUB200数据预处理脚本"></a><strong>CUB200数据预处理脚本</strong></h1><p>​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）</p>
+                <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: **CUB200数据预处理脚本**</span><br><span class="line">date: 2023-08-18 18:52:17</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CUB200数据预处理脚本"><a href="#CUB200数据预处理脚本" class="headerlink" title="CUB200数据预处理脚本"></a><strong>CUB200数据预处理脚本</strong></h1><p>​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rename_images</span>(<span class="params">source_dir</span>):</span><br><span class="line">    categories = <span class="built_in">sorted</span>(os.listdir(source_dir))</span><br><span class="line">    idx = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> category_id, category <span class="keyword">in</span> <span class="built_in">enumerate</span>(categories, start=<span class="number">1</span>):</span><br><span class="line">        category_path = os.path.join(source_dir, category)</span><br><span class="line">        image_files = [f <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(category_path) <span class="keyword">if</span> f.endswith(<span class="string">&quot;.jpg&quot;</span>) <span class="keyword">or</span> f.endswith(<span class="string">&quot;.png&quot;</span>) <span class="keyword">or</span> f.endwith(<span class="string">&quot;.JPG&quot;</span>)] <span class="comment">#如后缀没有列出，可在这里手动添加</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> image_file <span class="keyword">in</span> image_files:</span><br><span class="line">            image_name, image_ext = os.path.splitext(image_file)</span><br><span class="line">            new_image_name = <span class="string">f&quot;<span class="subst">&#123;<span class="built_in">str</span>(idx).zfill(<span class="number">5</span>)&#125;</span><span class="subst">&#123;image_ext&#125;</span>&quot;</span>  <span class="comment"># 使用0填充序号，确保固定长度</span></span><br><span class="line">            source_path = os.path.join(category_path, image_file)</span><br><span class="line">            dest_path = os.path.join(category_path, new_image_name)</span><br><span class="line">            os.rename(source_path, dest_path)</span><br><span class="line">            idx += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;图像已成功重新命名.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># images文件夹路径</span></span><br><span class="line">images_folder = <span class="string">&#x27;images&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新命名图像</span></span><br><span class="line">rename_images(images_folder)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>​                                           第二步：将整个数据集按照8:2的比例划分复制到训练集和测试集上</p>
