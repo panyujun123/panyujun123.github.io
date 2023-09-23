@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="CUB200数据预处理脚本​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）
+12345678910111213141516171819202122232425262728import osdef"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Shixuan Wu"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="metikos"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="CUB200数据预处理脚本​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）
+12345678910111213141516171819202122232425262728import osdef"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="metikos"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>metikos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Shixuanwu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/panyujun123">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-my.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Untitled</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-08-25
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="CUB200数据预处理脚本"><a href="#CUB200数据预处理脚本" class="headerlink" title="CUB200数据预处理脚本"></a><strong>CUB200数据预处理脚本</strong></h1><p>​                                       第一步：将所有图像文件重命名（结束后记得检查是否有因后缀不一致造成的遗漏）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rename_images</span>(<span class="params">source_dir</span>):</span><br><span class="line">    categories = <span class="built_in">sorted</span>(os.listdir(source_dir))</span><br><span class="line">    idx = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> category_id, category <span class="keyword">in</span> <span class="built_in">enumerate</span>(categories, start=<span class="number">1</span>):</span><br><span class="line">        category_path = os.path.join(source_dir, category)</span><br><span class="line">        image_files = [f <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(category_path) <span class="keyword">if</span> f.endswith(<span class="string">&quot;.jpg&quot;</span>) <span class="keyword">or</span> f.endswith(<span class="string">&quot;.png&quot;</span>) <span class="keyword">or</span> f.endwith(<span class="string">&quot;.JPG&quot;</span>)] <span class="comment">#如后缀没有列出，可在这里手动添加</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> image_file <span class="keyword">in</span> image_files:</span><br><span class="line">            image_name, image_ext = os.path.splitext(image_file)</span><br><span class="line">            new_image_name = <span class="string">f&quot;<span class="subst">&#123;<span class="built_in">str</span>(idx).zfill(<span class="number">5</span>)&#125;</span><span class="subst">&#123;image_ext&#125;</span>&quot;</span>  <span class="comment"># 使用0填充序号，确保固定长度</span></span><br><span class="line">            source_path = os.path.join(category_path, image_file)</span><br><span class="line">            dest_path = os.path.join(category_path, new_image_name)</span><br><span class="line">            os.rename(source_path, dest_path)</span><br><span class="line">            idx += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;图像已成功重新命名.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># images文件夹路径</span></span><br><span class="line">images_folder = <span class="string">&#x27;images&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新命名图像</span></span><br><span class="line">rename_images(images_folder)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>​                                           第二步：将整个数据集按照8:2的比例划分复制到训练集和测试集上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置文件夹路径</span></span><br><span class="line">images_folder = <span class="string">&#x27;images&#x27;</span></span><br><span class="line">train_folder = <span class="string">&#x27;train&#x27;</span></span><br><span class="line">test_folder = <span class="string">&#x27;test&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建train和test文件夹</span></span><br><span class="line">os.makedirs(train_folder, exist_ok=<span class="literal">True</span>)</span><br><span class="line">os.makedirs(test_folder, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历images文件夹中的子文件夹</span></span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(images_folder):</span><br><span class="line">    <span class="comment"># 创建与images相同的子文件夹结构</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> dirs:</span><br><span class="line">        train_dir = os.path.join(train_folder, <span class="built_in">dir</span>)</span><br><span class="line">        test_dir = os.path.join(test_folder, <span class="built_in">dir</span>)</span><br><span class="line">        os.makedirs(train_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">        os.makedirs(test_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 遍历子文件夹中的图片文件</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="comment"># 随机划分为训练集和验证集</span></span><br><span class="line">        <span class="keyword">if</span> random.random() &lt; <span class="number">0.8</span>:</span><br><span class="line">            destination_folder = train_folder</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            destination_folder = test_folder</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 构建目标文件的路径</span></span><br><span class="line">        destination_file = os.path.join(destination_folder, os.path.basename(root), file)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 复制图片文件到相应的文件夹</span></span><br><span class="line">        shutil.copy(os.path.join(root, file), destination_file)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;复制完成&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>​                                                                     第三步：创建train_test_split.txt文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def create_train_test_split(train_dir, test_dir, output_file):</span><br><span class="line">    with open(output_file, &#x27;w&#x27;) as f:</span><br><span class="line">        all_images = []</span><br><span class="line"></span><br><span class="line">        # 遍历train文件夹中的图像</span><br><span class="line">        for category in sorted(os.listdir(train_dir)):</span><br><span class="line">            category_path = os.path.join(train_dir, category)</span><br><span class="line">            image_files = [f for f in os.listdir(category_path) if f.endswith(&quot;.jpg&quot;) or f.endswith(&quot;.png&quot;)]</span><br><span class="line">            all_images.extend([(img, 1) for img in image_files])</span><br><span class="line"></span><br><span class="line">        # 遍历test文件夹中的图像</span><br><span class="line">        for category in sorted(os.listdir(test_dir)):</span><br><span class="line">            category_path = os.path.join(test_dir, category)</span><br><span class="line">            image_files = [f for f in os.listdir(category_path) if f.endswith(&quot;.jpg&quot;) or f.endswith(&quot;.png&quot;)]</span><br><span class="line">            all_images.extend([(img, 0) for img in image_files])</span><br><span class="line"></span><br><span class="line">        # 去掉文件扩展名并排序图像</span><br><span class="line">        all_images = sorted([(os.path.splitext(img)[0], label) for img, label in all_images])</span><br><span class="line"></span><br><span class="line">        for idx, (image_file, label) in enumerate(all_images, start=1):</span><br><span class="line">            f.write(f&quot;&#123;image_file&#125; &#123;label&#125;\n&quot;)</span><br><span class="line"></span><br><span class="line">    print(&quot;已成功创建train_test_split.txt文件.&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># train和test文件夹路径以及输出文件名</span><br><span class="line">train_folder = &#x27;train&#x27;</span><br><span class="line">test_folder = &#x27;val&#x27;</span><br><span class="line">output_filename = &#x27;train_test_split.txt&#x27;</span><br><span class="line"></span><br><span class="line"># 创建train_test_split.txt文件</span><br><span class="line">create_train_test_split(train_folder, test_folder, output_filename)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>​                                                                      第四步：创建images.txt文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_images_txt</span>(<span class="params">source_dir, output_file</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(output_file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        categories = <span class="built_in">sorted</span>(os.listdir(source_dir))</span><br><span class="line">        idx = <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> category_id, category <span class="keyword">in</span> <span class="built_in">enumerate</span>(categories, start=<span class="number">1</span>):</span><br><span class="line">            category_path = os.path.join(source_dir, category)</span><br><span class="line">            image_files = [f <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(category_path) <span class="keyword">if</span> f.endswith(<span class="string">&quot;.jpg&quot;</span>) <span class="keyword">or</span> f.endswith(<span class="string">&quot;.png&quot;</span>)]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> image_file <span class="keyword">in</span> image_files:</span><br><span class="line">                image_name, _ = os.path.splitext(image_file)</span><br><span class="line">                f.write(<span class="string">f&quot;<span class="subst">&#123;<span class="built_in">str</span>(idx).zfill(<span class="number">5</span>)&#125;</span> <span class="subst">&#123;category&#125;</span>/<span class="subst">&#123;image_name&#125;</span>.jpg\n&quot;</span>)</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;已成功创建images.txt文件.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># images文件夹路径和输出文件名</span></span><br><span class="line">images_folder = <span class="string">&#x27;images&#x27;</span></span><br><span class="line">output_filename = <span class="string">&#x27;images.txt&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建images.txt文件</span></span><br><span class="line">create_images_txt(images_folder, output_filename)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>​                                                             第五步：创建image_class_labels.txt文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line">def create_image_class_labels(source_dir, output_file):</span><br><span class="line">    with open(output_file, &#x27;w&#x27;) as f:</span><br><span class="line">        categories = sorted(os.listdir(source_dir))</span><br><span class="line">        </span><br><span class="line">        for category_id, category in enumerate(categories, start=1):</span><br><span class="line">            category_path = os.path.join(source_dir, category)</span><br><span class="line">            image_files = [f for f in os.listdir(category_path) if f.endswith(&quot;.jpg&quot;) or f.endswith(&quot;.png&quot;)]</span><br><span class="line">            </span><br><span class="line">            for image_file in image_files:</span><br><span class="line">                image_name = os.path.splitext(image_file)[0]  # 移除文件扩展名</span><br><span class="line">                image_id = image_name  # 图像文件名作为序号</span><br><span class="line">                f.write(f&quot;&#123;image_id&#125; &#123;category_id&#125;\n&quot;)</span><br><span class="line">    </span><br><span class="line">    print(&quot;已成功创建image_class_labels.txt文件.&quot;)</span><br><span class="line"></span><br><span class="line"># images文件夹路径和输出文件名</span><br><span class="line">merged_folder = &#x27;images&#x27;</span><br><span class="line">output_filename = &#x27;image_class_labels.txt&#x27;</span><br><span class="line"></span><br><span class="line"># 创建image_class_labels.txt文件</span><br><span class="line">create_image_class_labels(merged_folder, output_filename)</span><br></pre></td></tr></table></figure>
+
+<p>​                                             第六步：创建classes.txt文件。可手动创建（注意格式）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 001.Bacterialblight</span><br><span class="line">2 002.Blast</span><br><span class="line">3 003.Brownspot</span><br><span class="line">4 004.Tungro</span><br></pre></td></tr></table></figure>
+
+<p>​                                                  第七步（可选）：合并图像，以防误删操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import shutil</span><br><span class="line"></span><br><span class="line">def merge_images(source_dir, dest_dir):</span><br><span class="line">    # 获取源文件夹下的所有子文件夹（类别）</span><br><span class="line">    categories = os.listdir(source_dir)</span><br><span class="line">    </span><br><span class="line">    # 创建目标文件夹（如果不存在）</span><br><span class="line">    if not os.path.exists(dest_dir):</span><br><span class="line">        os.makedirs(dest_dir)</span><br><span class="line">    </span><br><span class="line">    # 遍历每个类别的子文件夹</span><br><span class="line">    for category in categories:</span><br><span class="line">        category_source = os.path.join(source_dir, category)</span><br><span class="line">        category_dest = os.path.join(dest_dir, category)</span><br><span class="line">        </span><br><span class="line">        # 创建目标类别子文件夹</span><br><span class="line">        if not os.path.exists(category_dest):</span><br><span class="line">            os.makedirs(category_dest)</span><br><span class="line">        </span><br><span class="line">        # 获取类别子文件夹中的所有图像文件</span><br><span class="line">        image_files = [f for f in os.listdir(category_source) if f.endswith(&quot;.jpg&quot;) or f.endswith(&quot;.png&quot;)]</span><br><span class="line">        </span><br><span class="line">        # 复制图像文件到目标类别子文件夹</span><br><span class="line">        for image_file in image_files:</span><br><span class="line">            source_path = os.path.join(category_source, image_file)</span><br><span class="line">            dest_path = os.path.join(category_dest, image_file)</span><br><span class="line">            shutil.copy(source_path, dest_path)</span><br><span class="line">            </span><br><span class="line">    print(&quot;图像已成功合并到目标文件夹.&quot;)</span><br><span class="line"></span><br><span class="line"># 源文件夹和目标文件夹的路径</span><br><span class="line">train_folder = &#x27;train&#x27;</span><br><span class="line">test_folder = &#x27;test&#x27;</span><br><span class="line">merged_folder = &#x27;images&#x27;</span><br><span class="line"></span><br><span class="line"># 合并训练集和测试集图像到目标文件夹</span><br><span class="line">merge_images(train_folder, merged_folder)</span><br><span class="line">merge_images(test_folder, merged_folder)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/panyujun123" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2023 Shixuan Wu<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
