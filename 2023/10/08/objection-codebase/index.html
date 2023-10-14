@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="1.自定义DataSet在 PyTorch 中，自定义的 Dataset 类需要继承 torch.utils.data.Dataset 类，并实现其两个主要方法：len 和 __getitem__。此外，还需要在 init 方法中填写一些变量，具体取决于数据集的特性。例如：
+数据集路径：data_p"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Shixuan Wu"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="objection codebase"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="1.自定义DataSet在 PyTorch 中，自定义的 Dataset 类需要继承 torch.utils.data.Dataset 类，并实现其两个主要方法：len 和 __getitem__。此外，还需要在 init 方法中填写一些变量，具体取决于数据集的特性。例如：
+数据集路径：data_p"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="metikos"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>objection codebase - metikos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Shixuanwu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/panyujun123">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-my.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>objection codebase</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-10-08
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="1-自定义DataSet"><a href="#1-自定义DataSet" class="headerlink" title="1.自定义DataSet"></a>1.自定义DataSet</h2><p>在 PyTorch 中，自定义的 Dataset 类需要继承 torch.utils.data.Dataset 类，并实现其两个主要方法：<strong>len</strong> 和 __getitem__。此外，还需要在 <strong>init</strong> 方法中填写一些变量，具体取决于数据集的特性。例如：</p>
+<p>数据集路径：data_path  ；标签信息 ：labels； 数据变换或预处理：transform&#x3D;None； 标识是训练集还是测试集：is_train。</p>
+<p>代码以读取Pascal Voc数据集为例：</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VocDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;读取解析PASCAL VOC2007/2012数据集&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,data_path,transform=<span class="literal">None</span>,is_train=<span class="literal">True</span></span>):</span><br><span class="line">        self.root = os.path.join(data_path,<span class="string">&#x27;VOCdevkit&#x27;</span>,<span class="string">&#x27;VOC2012&#x27;</span>)</span><br><span class="line">        self.img_root = os.path.join(self.root,<span class="string">&#x27;JPEGImages&#x27;</span>)</span><br><span class="line">        self.labels_root = os.path.join(self.root,<span class="string">&#x27;Annotations&#x27;</span>)</span><br><span class="line">        self.transform = transform</span><br><span class="line">        <span class="keyword">if</span> is_train:</span><br><span class="line">            txt_list = os.path.join(self.root,<span class="string">&#x27;ImageSets&#x27;</span>,<span class="string">&#x27;Main&#x27;</span>,<span class="string">&#x27;train.txt&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            txt_list = os.path.join(self.root,<span class="string">&#x27;ImageSets&#x27;</span>,<span class="string">&#x27;Main&#x27;</span>,<span class="string">&#x27;val.txt&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(txt_list) <span class="keyword">as</span> read:</span><br><span class="line">            <span class="comment"># 得到每个文件对应的xml文件 2008_000008.xml</span></span><br><span class="line">            self.xml_list = [os.path.join(self.labels_root,line.strip() + <span class="string">&quot;.xml&quot;</span>) <span class="keyword">for</span> line <span class="keyword">in</span> read.readlines()]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># read class_indict</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            json_file = <span class="built_in">open</span>(<span class="string">&#x27;./pascal_voc_classes.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">            self.class_dict = json.load(json_file)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(e)</span><br><span class="line">            exit(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, idx</span>):</span><br><span class="line">        <span class="comment"># read xml</span></span><br><span class="line">        xml_path = self.xml_list[idx]</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(xml_path) <span class="keyword">as</span> fid:</span><br><span class="line">            xml_str = fid.read()</span><br><span class="line">        xml = etree.fromstring(xml_str)</span><br><span class="line">        data = self.parse_xml_to_dict(xml)[<span class="string">&quot;annotation&quot;</span>]</span><br><span class="line">        img_path = os.path.join(self.img_root, data[<span class="string">&quot;filename&quot;</span>])</span><br><span class="line">        image = Image.<span class="built_in">open</span>(img_path)</span><br><span class="line">        <span class="keyword">if</span> image.<span class="built_in">format</span> != <span class="string">&quot;JPEG&quot;</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Image &#x27;&#123;&#125;&#x27; format not JPEG&quot;</span>.<span class="built_in">format</span>(img_path))</span><br><span class="line"></span><br><span class="line">        boxes = []</span><br><span class="line">        labels = []</span><br><span class="line">        iscrowd = []</span><br><span class="line">        <span class="keyword">assert</span> <span class="string">&quot;object&quot;</span> <span class="keyword">in</span> data, <span class="string">&quot;&#123;&#125; lack of object information.&quot;</span>.<span class="built_in">format</span>(xml_path)</span><br><span class="line">        <span class="keyword">for</span> obj <span class="keyword">in</span> data[<span class="string">&quot;object&quot;</span>]:</span><br><span class="line">            xmin = <span class="built_in">float</span>(obj[<span class="string">&quot;bndbox&quot;</span>][<span class="string">&quot;xmin&quot;</span>])</span><br><span class="line">            xmax = <span class="built_in">float</span>(obj[<span class="string">&quot;bndbox&quot;</span>][<span class="string">&quot;xmax&quot;</span>])</span><br><span class="line">            ymin = <span class="built_in">float</span>(obj[<span class="string">&quot;bndbox&quot;</span>][<span class="string">&quot;ymin&quot;</span>])</span><br><span class="line">            ymax = <span class="built_in">float</span>(obj[<span class="string">&quot;bndbox&quot;</span>][<span class="string">&quot;ymax&quot;</span>])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 进一步检查数据，有的标注信息中可能有w或h为0的情况，这样的数据会导致计算回归loss为nan</span></span><br><span class="line">            <span class="keyword">if</span> xmax &lt;= xmin <span class="keyword">or</span> ymax &lt;= ymin:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Warning: in &#x27;&#123;&#125;&#x27; xml, there are some bbox w/h &lt;=0&quot;</span>.<span class="built_in">format</span>(xml_path))</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            boxes.append([xmin, ymin, xmax, ymax])</span><br><span class="line">            labels.append(self.class_dict[obj[<span class="string">&quot;name&quot;</span>]])</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;difficult&quot;</span> <span class="keyword">in</span> obj:</span><br><span class="line">                iscrowd.append(<span class="built_in">int</span>(obj[<span class="string">&quot;difficult&quot;</span>]))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                iscrowd.append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># convert everything into a torch.Tensor</span></span><br><span class="line">        boxes = torch.as_tensor(boxes, dtype=torch.float32)</span><br><span class="line">        labels = torch.as_tensor(labels, dtype=torch.int64)</span><br><span class="line">        iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)</span><br><span class="line">        image_id = torch.tensor([idx])</span><br><span class="line">        area = (boxes[:, <span class="number">3</span>] - boxes[:, <span class="number">1</span>]) * (boxes[:, <span class="number">2</span>] - boxes[:, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        target = &#123;&#125;</span><br><span class="line">        target[<span class="string">&quot;boxes&quot;</span>] = boxes</span><br><span class="line">        target[<span class="string">&quot;labels&quot;</span>] = labels</span><br><span class="line">        target[<span class="string">&quot;image_id&quot;</span>] = image_id</span><br><span class="line">        target[<span class="string">&quot;area&quot;</span>] = area</span><br><span class="line">        target[<span class="string">&quot;iscrowd&quot;</span>] = iscrowd</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.transforms <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            image, target = self.transforms(image, target)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> image, target</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.xml_list)</span><br></pre></td></tr></table></figure>
+
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/panyujun123" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2023 Shixuan Wu<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
