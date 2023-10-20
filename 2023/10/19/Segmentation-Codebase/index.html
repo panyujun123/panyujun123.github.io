@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="加载Pascal Voc2012数据集相关代码：
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Shixuan Wu"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Segmentation Codebase"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="加载Pascal Voc2012数据集相关代码：
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="metikos"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Segmentation Codebase - metikos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Shixuanwu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/panyujun123">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-my.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Segmentation Codebase</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-10-19
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h4 id="加载Pascal-Voc2012数据集相关代码："><a href="#加载Pascal-Voc2012数据集相关代码：" class="headerlink" title="加载Pascal Voc2012数据集相关代码："></a>加载Pascal Voc2012数据集相关代码：</h4><hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">read_voc</span>(<span class="params">data_dir,is_train=<span class="literal">True</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;读取所有数据集并标注&quot;&quot;&quot;</span></span><br><span class="line">    txt_fname = os.path.join(data_dir,<span class="string">&#x27;ImageSets&#x27;</span>, <span class="string">&#x27;Segmentation&#x27;</span>,</span><br><span class="line">                             <span class="string">&#x27;train.txt&#x27;</span> <span class="keyword">if</span> is_train <span class="keyword">else</span> <span class="string">&#x27;val.txt&#x27;</span>)</span><br><span class="line">    mode = torchvision.io.image.ImageReadMode.RGB</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(txt_fname, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        images = f.read().split()</span><br><span class="line"></span><br><span class="line">    features, labels = [], []</span><br><span class="line">    <span class="keyword">for</span> i,fname <span class="keyword">in</span> <span class="built_in">enumerate</span>(images):</span><br><span class="line">        features.append(torchvision.io.read_image(os.path.join(data_dir, <span class="string">&#x27;JPEGImages&#x27;</span>, <span class="string">f&#x27;<span class="subst">&#123;fname&#125;</span>.jpg&#x27;</span>)))</span><br><span class="line">        <span class="string">&quot;&quot;&quot;这里读取读取label可以直接用PIL的Image.open打开默认是P模式(单通道)，每个像素对应的数字就是类别索引(除目标边缘255可忽略)，不用通过RGB关联&quot;&quot;&quot;</span></span><br><span class="line">        labels.append(torchvision.io.read_image(os.path.join(data_dir, <span class="string">&#x27;SegmentationClass&#x27;</span>, <span class="string">f&#x27;<span class="subst">&#123;fname&#125;</span>.png&#x27;</span>), mode=mode))</span><br><span class="line">    <span class="keyword">return</span> features, labels</span><br><span class="line"></span><br><span class="line">VOC_COLORMAP = [[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">128</span>, <span class="number">0</span>], [<span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">0</span>, <span class="number">128</span>], [<span class="number">128</span>, <span class="number">0</span>, <span class="number">128</span>], [<span class="number">0</span>, <span class="number">128</span>, <span class="number">128</span>], [<span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>],</span><br><span class="line">                [<span class="number">64</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">192</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">64</span>, <span class="number">128</span>, <span class="number">0</span>], [<span class="number">192</span>, <span class="number">128</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">64</span>, <span class="number">0</span>, <span class="number">128</span>], [<span class="number">192</span>, <span class="number">0</span>, <span class="number">128</span>], [<span class="number">64</span>, <span class="number">128</span>, <span class="number">128</span>], [<span class="number">192</span>, <span class="number">128</span>, <span class="number">128</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">64</span>, <span class="number">0</span>], [<span class="number">128</span>, <span class="number">64</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">192</span>, <span class="number">0</span>], [<span class="number">128</span>, <span class="number">192</span>, <span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>, <span class="number">64</span>, <span class="number">128</span>]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">VOC_CLASSES = [<span class="string">&#x27;background&#x27;</span>, <span class="string">&#x27;aeroplane&#x27;</span>, <span class="string">&#x27;bicycle&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>, <span class="string">&#x27;boat&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;bottle&#x27;</span>, <span class="string">&#x27;bus&#x27;</span>, <span class="string">&#x27;car&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>, <span class="string">&#x27;chair&#x27;</span>, <span class="string">&#x27;cow&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;diningtable&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;horse&#x27;</span>, <span class="string">&#x27;motorbike&#x27;</span>, <span class="string">&#x27;person&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;potted plant&#x27;</span>, <span class="string">&#x27;sheep&#x27;</span>, <span class="string">&#x27;sofa&#x27;</span>, <span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;tv/monitor&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">voc_colormap2label</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;构建从RGB到VOC类别索引的映射&quot;&quot;&quot;</span></span><br><span class="line">    colormap2label = torch.zeros(<span class="number">256</span> ** <span class="number">3</span>, dtype=torch.long)</span><br><span class="line">    <span class="keyword">for</span> i, colormap <span class="keyword">in</span> <span class="built_in">enumerate</span>(VOC_COLORMAP):</span><br><span class="line">        colormap2label[</span><br><span class="line">            (colormap[<span class="number">0</span>] * <span class="number">256</span> + colormap[<span class="number">1</span>]) * <span class="number">256</span> + colormap[<span class="number">2</span>]] = i</span><br><span class="line">    <span class="keyword">return</span> colormap2label</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">voc_label_indices</span>(<span class="params">colormap, colormap2label</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;将VOC标签中的RGB值映射到它们的类别索引&quot;&quot;&quot;</span></span><br><span class="line">    colormap = colormap.permute(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>).numpy().astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line">    idx = ((colormap[:, :, <span class="number">0</span>] * <span class="number">256</span> + colormap[:, :, <span class="number">1</span>]) * <span class="number">256</span></span><br><span class="line">           + colormap[:, :, <span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> colormap2label[idx]</span><br><span class="line"></span><br><span class="line">y = voc_label_indices(train_labels[<span class="number">0</span>], voc_colormap2label())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;y[<span class="number">105</span>:<span class="number">115</span>, <span class="number">130</span>:<span class="number">140</span>]&#125;</span>,<span class="subst">&#123;VOC_CLASSES[<span class="number">1</span>]&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">voc_rand_crop</span>(<span class="params">feature, label, height, width</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;随机裁剪特征和标签图像</span></span><br><span class="line"><span class="string">    保证对一个图片裁剪出某一个框的同时对label同样裁出一个框，像素和像素之间还是能一一对应的。</span></span><br><span class="line"><span class="string">    rect 是通过 torchvision.transforms.RandomCrop.get_params 函数生成的随机裁剪参数。</span></span><br><span class="line"><span class="string">    它是一个包含四个值的元组，分别是 (top, left, height, width)，表示裁剪框的位置和大小。</span></span><br><span class="line"><span class="string">    这个元组的值是根据输入图像和期望的裁剪大小 (height, width) 随机生成的。</span></span><br><span class="line"><span class="string">    确保对输入图像和标签进行相同的裁剪操作，以保持它们的一致性。&quot;&quot;&quot;</span></span><br><span class="line">    rect = torchvision.transforms.RandomCrop.get_params(</span><br><span class="line">        feature, (height, width))</span><br><span class="line">    feature = torchvision.transforms.functional.crop(feature, *rect)</span><br><span class="line">    label = torchvision.transforms.functional.crop(label, *rect)</span><br><span class="line">    <span class="keyword">return</span> feature, label</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#@save</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VOCSegDataset</span>(torch.utils.data.Dataset):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;一个用于加载VOC数据集的自定义数据集&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, is_train, crop_size, voc_dir</span>):</span><br><span class="line">        self.transform = torchvision.transforms.Normalize(</span><br><span class="line">            mean=[<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], std=[<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])</span><br><span class="line">        self.crop_size = crop_size</span><br><span class="line">        features, labels = read_voc_images(voc_dir, is_train=is_train)</span><br><span class="line">        self.features = [self.normalize_image(feature)</span><br><span class="line">                         <span class="keyword">for</span> feature <span class="keyword">in</span> self.<span class="built_in">filter</span>(features)]</span><br><span class="line">        self.labels = self.<span class="built_in">filter</span>(labels)</span><br><span class="line">        self.colormap2label = voc_colormap2label()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;read &#x27;</span> + <span class="built_in">str</span>(<span class="built_in">len</span>(self.features)) + <span class="string">&#x27; examples&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">normalize_image</span>(<span class="params">self, img</span>):</span><br><span class="line">        <span class="keyword">return</span> self.transform(img.<span class="built_in">float</span>() / <span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">filter</span>(<span class="params">self, imgs</span>):</span><br><span class="line">        <span class="keyword">return</span> [img <span class="keyword">for</span> img <span class="keyword">in</span> imgs <span class="keyword">if</span> (</span><br><span class="line">            img.shape[<span class="number">1</span>] &gt;= self.crop_size[<span class="number">0</span>] <span class="keyword">and</span></span><br><span class="line">            img.shape[<span class="number">2</span>] &gt;= self.crop_size[<span class="number">1</span>])]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, idx</span>):</span><br><span class="line">        feature, label = voc_rand_crop(self.features[idx], self.labels[idx],</span><br><span class="line">                                       *self.crop_size)</span><br><span class="line">        <span class="keyword">return</span> (feature, voc_label_indices(label, self.colormap2label))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.features)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_data_voc</span>(<span class="params">batch_size, crop_size</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;加载VOC语义分割数据集&quot;&quot;&quot;</span></span><br><span class="line">    voc_dir = d2l.download_extract(<span class="string">&#x27;voc2012&#x27;</span>, os.path.join(</span><br><span class="line">        <span class="string">&#x27;VOCdevkit&#x27;</span>, <span class="string">&#x27;VOC2012&#x27;</span>))</span><br><span class="line">    num_workers = d2l.get_dataloader_workers()</span><br><span class="line">    train_iter = torch.utils.data.DataLoader(</span><br><span class="line">        VOCSegDataset(<span class="literal">True</span>, crop_size, voc_dir), batch_size,</span><br><span class="line">        shuffle=<span class="literal">True</span>, drop_last=<span class="literal">True</span>, num_workers=num_workers)</span><br><span class="line">    test_iter = torch.utils.data.DataLoader(</span><br><span class="line">        VOCSegDataset(<span class="literal">False</span>, crop_size, voc_dir), batch_size,</span><br><span class="line">        drop_last=<span class="literal">True</span>, num_workers=num_workers)</span><br><span class="line">    <span class="keyword">return</span> train_iter, test_iter</span><br></pre></td></tr></table></figure>
+
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/panyujun123" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2023 Shixuan Wu<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
