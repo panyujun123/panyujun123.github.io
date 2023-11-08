@@ -205,7 +205,7 @@
 <li>为了减少计算成本，遵循PVT减少K和V的长度，而不是像Swin Transformer中那样将{Q, K, V}分割为区域。</li>
 </ol>
 <p>​	将Shunted Self-Attention与ViT、Swin、pvt中的自注意力进行比较。Swin Transformer将局部自注意力应用于小区域内的大尺寸特征图。PVT以较大的步长融合key，value。不同的是，shunted selfattention进行多尺度的token聚合，以获得不同大小的键和值。</p>
-<p><img src="/img/Shunted-Self-Attention-via-Multi-Scale-Token-Aggregation/image-20231108160616425-16994327947351.png"></p>
+<p><img src="/img/Shunted-Self-Attention-via-Multi-Scale-Token-Aggregation/image-20231108160616425.png"></p>
 <h4 id="Detail-specific-Feedforward-Layers"><a href="#Detail-specific-Feedforward-Layers" class="headerlink" title="Detail-specific Feedforward Layers"></a>Detail-specific Feedforward Layers</h4><p>在传统的前馈层中，全连接层是逐点的，不能学习交叉token信息。在这里，我们的目标是通过在前馈层中指定细节来补充局部信息。如下图所示，我们通过在前馈层的两个全连接层之间添加我们的data specific layer来补充前馈层中的局部细节，在代码中通过深度卷积实现。</p>
 <p><img src="/img/Shunted-Self-Attention-via-Multi-Scale-Token-Aggregation/image-20231108160844622.png" alt="image-20231108160844622"></p>
 <p>模型代码其实就包含MLP,Attention,Block,OverlapPatchEmbed,Head,DWConv几个模块构成。有t,s,b三种大小。</p>
