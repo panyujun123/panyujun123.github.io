@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Abstract​	首先介绍了最近的Vit的表现很好，通过自注意力机制，能够很好地捕捉图像中不同区域或像素的长程依赖关系。但是，它通常在每一层中指定每个token特征的相似感受野，这种约束不可避免地限制了每个自注意力层捕捉多尺度特征的能力，对不同尺度对象的特征捕捉能力有点不足，处理多尺度对象的图像时"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Shixuan Wu"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Shunted Self-Attention via Multi-Scale Token Aggregation"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Abstract​	首先介绍了最近的Vit的表现很好，通过自注意力机制，能够很好地捕捉图像中不同区域或像素的长程依赖关系。但是，它通常在每一层中指定每个token特征的相似感受野，这种约束不可避免地限制了每个自注意力层捕捉多尺度特征的能力，对不同尺度对象的特征捕捉能力有点不足，处理多尺度对象的图像时"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="metikos"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://example.comimg/home-my.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Shunted Self-Attention via Multi-Scale Token Aggregation - metikos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Shixuanwu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/panyujun123">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-my.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Shunted Self-Attention via Multi-Scale Token Aggregation</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2023-11-08
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>​	首先介绍了最近的<strong>Vit的表现很好</strong>，通过自注意力机制，能够很好地捕捉图像中不同区域或像素的长程依赖关系。<strong>但是</strong>，它通常在每一层中指定每个token特征的相似感受野，这种约束不可避免地限制了每个自注意力层捕捉多尺度特征的能力，对不同尺度对象的特征捕捉能力有点不足，处理多尺度对象的图像时表现就差了。</p>
+<p>​	<strong>为了解决这一问题</strong>，提出了一种新的通用策略，叫”shunted self-attention”（SSA）分流注意力，允许ViT在每个注意力层的混合尺度上对注意力进行建模。</p>
+<p>​	SSA的<strong>关键思想</strong>是将异构感受野尺寸注入到token中:在计算自注意力矩阵之前，SSA会有选择性地它选择性地合并token以表示较大的对象特征，同时保留某些令牌以保留细粒度特征。这样的合并方式让模型能学到不同尺度对象之间的联系，同时还减少了token数量和计算成本。</p>
+<p>​	<strong>最后</strong>介绍了下SSA的表现情况。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>​	提出了一种新的分流自注意(SSA)方案，以明确地考虑多尺度特征。<strong>与之前</strong>只关注一个注意力层中静态特征图的工作相比，我们在一个自注意层中维护了关注多尺度对象的各种尺度特征映射。<strong>广泛的实验表明</strong>，该模型作为各种下游任务的骨干的有效性。所提出的模型优于之前的transformer，并在分类、检测和分割任务上取得了最先进的结果。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><img src="/Shunted-Self-Attention-via-Multi-Scale-Token-Aggregation/image-20231108155247805.png" alt="image-20231108155247805"></p>
+<p>​	SSA block 与ViT中传统的自注意力块之间有两个主要区别：</p>
+<ol>
+<li>SSA为每个自注意力层引入了分流注意力机制，以捕获多粒度信息，更好地建模不同大小的目标，特别是小目标;</li>
+<li>通过过增加跨token交互来增强逐点前馈层中提取<strong>局部信息</strong>的能力。Shunted Transformer应用了一种新的 patch embedding 方法，为第一个注意力块获得更好的输入特征图。</li>
+</ol>
+<h3 id="Shunted-Transformer-Block"><a href="#Shunted-Transformer-Block" class="headerlink" title="Shunted Transformer Block"></a>Shunted Transformer Block</h3><p>在Shunted Transformer的i-th stage有Li 个transformer blocks。每个transformer块包含一个自注意力层和一个前馈层。为了降低处理高分辨率特征图时的计算成本，PVT引入空间缩减注意力(SRA)代替原始的多头自注意力(MSA)。然而，SRA往往会在一个自注意力层中合并太多的token，并且只提供单一尺度的token特征。这些限制阻碍了模型捕获多尺度目标特别是小尺度目标的能力。因此，引入了shunted self-attention，在一个自注意力层中并行地学习多粒度信息。</p>
+<h4 id="Shunted-Self-Attention"><a href="#Shunted-Self-Attention" class="headerlink" title="Shunted Self-Attention"></a>Shunted Self-Attention</h4><ol>
+<li>首先将输入序列F，toch.size(h×w×c)投影为查询(Q)、键(K)和值(V)张量；</li>
+<li>然后多头自注意采用H个独立注意头并行计算自注意；</li>
+<li>为了减少计算成本，遵循PVT减少K和V的长度，而不是像Swin Transformer中那样将{Q, K, V}分割为区域。</li>
+</ol>
+<p>​	将Shunted Self-Attention与ViT、Swin、pvt中的自注意力进行比较。Swin Transformer将局部自注意力应用于小区域内的大尺寸特征图。PVT以较大的步长融合key，value。不同的是，shunted selfattention进行多尺度的token聚合，以获得不同大小的键和值。</p>
+<img src="Shunted-Self-Attention-via-Multi-Scale-Token-Aggregation/image-20231108160616425.png" alt="image-20231108160616425" style="zoom:80%;" />
+
+<h4 id="Detail-specific-Feedforward-Layers"><a href="#Detail-specific-Feedforward-Layers" class="headerlink" title="Detail-specific Feedforward Layers"></a>Detail-specific Feedforward Layers</h4><p>在传统的前馈层中，全连接层是逐点的，不能学习交叉token信息。在这里，我们的目标是通过在前馈层中指定细节来补充局部信息。如下图所示，我们通过在前馈层的两个全连接层之间添加我们的data specific layer来补充前馈层中的局部细节，在代码中通过深度卷积实现。</p>
+<p><img src="/Shunted-Self-Attention-via-Multi-Scale-Token-Aggregation/image-20231108160844622.png" alt="image-20231108160844622"></p>
+<p>模型代码其实就包含MLP,Attention,Block,OverlapPatchEmbed,Head,DWConv几个模块构成。有t,s,b三种大小。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/panyujun123" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2023 Shixuan Wu<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
